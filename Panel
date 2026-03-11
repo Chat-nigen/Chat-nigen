@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT NIGEN - OFFICIAL STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #ff4b2b;
+            --blue: #0088cc;
+            --dark: #050505;
+            --panel: rgba(22, 22, 22, 0.9);
+            --neon-blue: #00d2ff;
+        }
+
+        /* АНИМАТСИЯИ СИТОРАҲО */
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        body, html {
+            margin: 0; padding: 0; font-family: 'Montserrat', sans-serif;
+            background: var(--dark); color: white; overflow-x: hidden;
+            scroll-behavior: smooth; min-height: 100vh;
+        }
+
+        #star-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 200%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: stars 50s linear infinite; z-index: -1; opacity: 0.5;
+        }
+
+        .page { display: none; min-height: 100vh; padding: 20px; flex-direction: column; align-items: center; box-sizing: border-box; position: relative; }
+        .active { display: flex; animation: slideIn 0.5s ease-out; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ЛОГОТИПИ НЕОНИИ КАЛОН */
+        .logo-box { margin: 50px 0; position: relative; }
+        .logo {
+            font-family: 'Orbitron', sans-serif; font-size: 3.8rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 8px; color: #fff;
+            text-shadow: 0 0 15px var(--red), 0 0 30px var(--red), 0 0 45px var(--red);
+            animation: pulse 2s infinite alternate; line-height: 1.1;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 15px var(--red); }
+            100% { transform: scale(1.05); text-shadow: 0 0 30px var(--red), 0 0 50px var(--red); }
+        }
+
+        /* ТУГМАИ ДАЛЕЕ */
+        .btn-start {
+            background: linear-gradient(45deg, var(--red), #ff1f1f);
+            color: white; border: none; padding: 25px 80px;
+            font-size: 1.8rem; font-weight: 900; border-radius: 20px;
+            cursor: pointer; margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(255, 75, 43, 0.5);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-start:active { transform: scale(1.5); background: var(--blue); box-shadow: 0 0 50px var(--blue); }
+
+        /* МЕНЮИ АСОСӢ */
+        .menu-card {
+            width: 100%; max-width: 420px; background: var(--panel);
+            margin: 15px 0; padding: 30px; border-radius: 25px;
+            font-weight: 900; font-size: 1.2rem; cursor: pointer;
+            border: 1px solid #333; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .menu-card:hover { border-color: var(--neon-blue); transform: translateX(10px); }
+        .menu-card:active { background: var(--blue); }
+
+        /* БАРНОМАҲО */
+        .app-item {
+            width: 100%; max-width: 460px; background: var(--panel);
+            margin-bottom: 20px; padding: 22px; border-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border: 1px solid #222; backdrop-filter: blur(5px);
+        }
+        .app-meta b { font-size: 1.3rem; color: var(--neon-blue); display: block; margin-bottom: 5px; }
+        .rating { color: #ffcc00; font-size: 0.9rem; letter-spacing: 2px; }
+
+        .download-link {
+            background: var(--blue); color: white; text-decoration: none;
+            padding: 15px 25px; border-radius: 12px; font-weight: 800;
+            font-size: 0.9rem; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .download-link:active { background: #fff; color: var(--blue); }
+
+        /* ПОДДЕРЖКА */
+        .faq-box {
+            width: 100%; max-width: 500px; background: #111;
+            margin-bottom: 15px; border-radius: 18px; overflow: hidden;
+            border-bottom: 3px solid var(--red);
+        }
+        .faq-q { padding: 22px; font-weight: 900; cursor: pointer; display: flex; justify-content: space-between; background: #181818; }
+        .faq-a { padding: 22px; color: #bbb; display: none; line-height: 1.7; font-size: 1rem; border-top: 1px solid #222; }
+
+        .btn-back { align-self: flex-start; background: #333; color: white; border: none; padding: 12px 25px; border-radius: 10px; margin-bottom: 30px; font-weight: bold; }
+
+        h2 { font-family: 'Orbitron'; font-size: 2rem; margin-bottom: 30px; letter-spacing: 4px; }
+    </style>
+</head>
+<body>
+
+    <div id="star-container"></div>
+
+    <div id="welcome" class="page active">
+        <div class="logo-box">
+            <div class="logo">CHAT<br>NIGEN</div>
+        </div>
+        <div style="background: rgba(0,0,0,0.6); padding: 25px; border-radius: 20px; border: 1px dashed #444;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #eee; margin: 0;">
+                Салом ба ҳама! Шумо дар замимаи расмии <b>CHAT NIGEN</b> ҳастед.<br>
+                Дар ин ҷо ситораҳо барои шумо медурахшанд ва беҳтарин софтҳо интизори шумоянд.
+            </p>
+        </div>
+        <button class="btn-start" onclick="showPage('menu')">ДАЛЕЕ</button>
+    </div>
+
+    <div id="menu" class="page">
+        <h2>ГЛАВНОЕ МЕНЮ</h2>
+        <div class="menu-card" onclick="showPage('android')"><span>1) софт на андроид</span> 🤖</div>
+        <div class="menu-card" onclick="showPage('iphone')"><span>2) софт на айфон</span> 🍎</div>
+        <div class="menu-card" onclick="showPage('support')"><span>3) поддержка</span> ♾️</div>
+    </div>
+
+    <div id="android" class="page">
+        <button class="btn-back" onclick="showPage('menu')">← НАЗАД</button>
+        <h2 style="color: var(--neon-blue);">ANDROID APPS</h2>
+        <div id="app-list-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            </div>
+    </div>
+
+    <div id="iphone" class="page">
+        <button class="btn-back" onclick="showPage('menu')">← НАЗАД</button>
+        <h2>iOS STORE</h2>
+        <div class="app-item">
+            <div class="app-meta">
+                <b>iChat Premium v4</b>
+                <div class="rating">★★★★★ (999+)</div>
+            </div>
+            <a href="https://t.me/chat_nigen" target="_blank" class="download-link" onclick="return ask()">СКАЧАТЬ</a>
+        </div>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 20px;">Барои iOS танҳо версияҳои тасдиқшуда дастрасанд.</p>
+    </div>
+
+    <div id="support" class="page">
+        <button class="btn-back" onclick="showPage('menu')">← НАЗАД</button>
+        <h2 style="color: var(--red);">ПОДДЕРЖКА</h2>
+        
+        <div class="faq-box">
+            <div class="faq-q" onclick="toggleFaq(this)">Чаро софт барои ман кор накард? <span>+</span></div>
+            <div class="faq-a">Эҳтимол дорад, ки телефони шумо Honor ё Poco бошад. Софтҳои мо махсус барои Samsung ва iPhone сохта шудаанд, то бехатарии 100% таъмин бошад.</div>
+        </div>
+
+        <div class="faq-box">
+            <div class="faq-q" onclick="toggleFaq(this)">Оё файлҳо вирус доранд? <span>+</span></div>
+            <div class="faq-a">Не! Ҳамаи софтҳо пеш аз илова шудан ба канал тавассути антивирусҳои пуриқтидор тафтиш карда мешаванд.</div>
+        </div>
+
+        <div class="faq-box">
+            <div class="faq-q" onclick="toggleFaq(this)">Чӣ тавр версияи навро ёбам? <span>+</span></div>
+            <div class="faq-a">Шумо танҳо бояд ба канали Телеграми мо @chat_nigen обуна шавед. Ҳамаи навсозиҳо (updates) дар он ҷо ройгон гузошта мешаванд.</div>
+        </div>
+    </div>
+
+    <script>
+        const TG_URL = "https://t.me/chat_nigen";
+
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function ask() {
+            return confirm("Шумо мехоҳед ба канали @chat_nigen барои скачат кардан гузаред?");
+        }
+
+        function toggleFaq(el) {
+            const ans = el.nextElementSibling;
+            const span = el.querySelector('span');
+            if (ans.style.display === "block") {
+                ans.style.display = "none";
+                span.innerText = "+";
+            } else {
+                ans.style.display = "block";
+                span.innerText = "−";
+            }
+        }
+
+        // ГЕНЕРАТСИЯИ 20 БАРНОМАИ АНДРОИД
+        const container = document.getElementById('app-list-container');
+        const appNames = ["VPN Ultra", "Photo Master", "Cleaner VIP", "Game Turbo", "Music Premium", "Video Editor", "File Lock", "Battery Pro", "Social Mod", "Skin Tool"];
+        
+        for (let i = 1; i <= 20; i++) {
+            let name = appNames[i % 10] || "Advanced Soft";
+            container.innerHTML += `
+                <div class="app-item">
+                    <div class="app-meta">
+                        <b>${name} v${i}.0</b>
+                        <div class="rating">★★★★★ (${40 + i})</div>
+                    </div>
+                    <a href="${TG_URL}" target="_blank" class="download-link" onclick="return ask()">СКАЧАТЬ</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
